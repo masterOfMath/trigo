@@ -2,11 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Моя тестовая страница</title>
+    <title>Trigo</title>
     <script type="text/javascript" id="MathJax-script" async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
+    
+    <link href="styles/tabsStyle.css" rel="stylesheet">
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
+
 
   </head>
   <body>
@@ -32,22 +35,42 @@
       <button class="btn13"></button>
       <button class="btn14"></button>
       <button class="btn15"></button>
+      
     </div>
     
     <div class="tasks">
-      
-      <p class="sin"></p>
-      <p class="cos"></p>
-      
-      <button  class="task">Random Equation</button>
-      <p class="randomEq">
+      <div class="tabs">
+        <div class="tabs__bar-wrap">
+          <div class="tabs__bar">
+            <div class="tabs__controls">Углы</div>
+            <div class="tabs__controls">Уравнения</div>
+          </div>
+        </div>
+        <div class="tabs__content">
+          <div class="tabs__section">
+            <p class="sin"></p>
+            <p class="cos"></p>
+          </div>
+          <div class="tabs__section">
+            <button  class="task">Новое уравнение</button>
+            <p class="randomEq"></p>
+            <div class="checkShow">
+              
+              <button class="check" role="button">Проверить</button>
+              <button class="show">Показать</button>   
+                         
+                           
+            </div>
+          <div class = "progressDiv">
+            <p class="progress">0 подряд!</p> 
+          </div>
+            
+          </div>
         
-      </p>
-      <div class="checkShow">
-      <button  class="check">Check</button>
-      <button class="show">Show</button>
+        </div>
+      </div>
     </div>
-    </div>
+
     <div class="trigTable">
     <div class ="showHide">
       <p>Trig Table</p>
@@ -62,10 +85,23 @@
     </div>
     
   </div>
+  
   <script src="scripts/models.js"></script>
     <script src="scripts/mapping.js"></script>
     <script src="scripts/button-script.js"></script>
-    
+    <script src="scripts/tabSlider.js"></script>
+  <script>
+    var opts = {
+      draggable: true,
+      slide: 1,
+    };
+
+    var elem = document.querySelector('.tabs');
+    elem.addEventListener('tabChange', function(evt) {
+      console.log(evt.detail);
+    })
+    var tabs = new TabsSlider(elem, opts);
+  </script>
     
   </body>
   

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <title>tabs</title>
+        <meta charset="utf-8" />
+        <link href="tabs.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="tabs">
+            <div class="tabs__bar-wrap">
+              <div class="tabs__bar">
+                <div class="tabs__controls">View</div>
+                <div class="tabs__controls">General</div>
+              </div>
+            </div>
+            <div class="tabs__content">
+              <div class="tabs__section">
+                I'm the first tab View
+              </div>
+              <div class="tabs__section">
+                second tab - General<br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eos, iusto laboriosam voluptatem at reiciendis vel, facilis repellendus totam excepturi earum saepe rerum ullam!
+              </div>
+            
+            </div>
+          </div>
+
+          <script src="tabSlider.js"></script>
+  <script>
+    var opts = {
+      draggable: true,
+      slide: 1,
+    };
+
+    var elem = document.querySelector('.tabs');
+    elem.addEventListener('tabChange', function(evt) {
+      console.log(evt.detail);
+    })
+    var tabs = new TabsSlider(elem, opts);
+  </script>
+    </body>
+</html>
+
