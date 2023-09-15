@@ -51,8 +51,9 @@
   font-size: 32px;
   text-align: center;
   margin: 10px;
-  justify-content: center;
-  
+}
+.randomDot {
+  font-size: 60px;
 }
 
 /* .tasks {
