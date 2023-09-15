@@ -37,6 +37,7 @@
     position: relative;
     width: 400px;
     margin-right: 10px;
+    min-width: 400px;
   }
   
   
@@ -45,7 +46,7 @@
     height: auto;
   }
 
-.sin,.cos,.randomEq,.ineq {
+.randomDot,.randomEq,.ineq {
    height: 100px; 
   font-size: 32px;
   text-align: center;
@@ -131,7 +132,7 @@ input:checked + .slider:before {
 .check,.show,.task {
   appearance: button;
   backface-visibility: hidden;
-  background-color: #405cf5;
+  background-color: #405bf5;
   border-radius: 6px;
   border-width: 0;
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
@@ -165,6 +166,8 @@ input:checked + .slider:before {
 .check:focus,.show:focus {
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
 }
+
+
   
   
   

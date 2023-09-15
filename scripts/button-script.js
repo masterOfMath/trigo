@@ -32,14 +32,10 @@ var input = document.getElementById('toggleswitch');
         }
     })
 
-    const taskBtn = btns.item(16); 
+    const taskEqBtn = document.querySelector("#taskEq");; 
     let n = 0;
-    taskBtn .onclick = async function () {
+    taskEqBtn .onclick = async function () {
       allBtnsToWhite();
-      // document.querySelector(".sin").textContent ="";
-      // document.querySelector(".cos").textContent ="";
-      // document.querySelector(".sin").style.visibility = "hidden";
-      // document.querySelector(".cos").style.visibility = "hidden";
       document.querySelector(".randomEq").style.visibility = "visible";
       document.querySelector(".show").disabled = false;
       document.querySelector(".check").disabled = false;
@@ -52,18 +48,12 @@ var input = document.getElementById('toggleswitch');
       for (let i = 0; i < 16; i++) {
   
         const btn = btns.item(i);
-        btn .onclick = async function () {
-          if (btn.style.backgroundColor === "red") {
+        btn .onclick = function () {
+          if (btn.style.backgroundColor === "rgb(120, 138, 240)") {
             btn.style.backgroundColor = "white";
-            if (clickedDots.length === 1 && clickedDots[0]===i) {
-                clickedDots.pop();
-            } else {
-              const index = clickedDots.valueOf(i);
-            clickedDots.splice(index,1);
-            }
-
+            clickedDots = clickedDots.filter((n)=> {return n!=i});
           } else {
-            btn.style.backgroundColor = "red";
+            btn.style.backgroundColor = "rgb(120, 138, 240)";
             clickedDots.push(i);
           }   
           console.log(clickedDots);
@@ -73,18 +63,20 @@ var input = document.getElementById('toggleswitch');
       
       checkBtn.onclick = async function () {
         console.log("check", eq.dots,clickedDots);
-
+          const progressEq = document.querySelector("#progressEq")
           if (arraysEqual(eq.dots,clickedDots)) {
-            document.querySelector(".progress").textContent =(++n) +" подряд!";
-            document.querySelector(".progress").style.color = "green";
+            progressEq.textContent =(++n) +" подряд!";
+            progressEq.style.color = "green";
             clickedDots.forEach(x => btns.item(x).style.backgroundColor = "green");
+            checkBtn.disabled = true;
+            document.querySelector(".show").disabled = true;
 
-            clickedDots.forEach(x => btns.item(x).style.backgroundColor = "white");
+            
             clickedDots.pop();
             clickedDots.pop();
           } else {
-            document.querySelector(".progress").textContent = "0 подряд!";
-            document.querySelector(".progress").style.color = "red";
+            progressEq.textContent = "0 подряд!";
+            progressEq.style.color = "red";
             clickedDots.forEach(x => btns.item(x).style.backgroundColor = "white");
             clickedDots.pop();
             clickedDots.pop();
@@ -92,32 +84,77 @@ var input = document.getElementById('toggleswitch');
             n = 0;
           }
       }
-      const showBtn = btns.item(18);
+      const showBtn = document.querySelector("#showEq");
       showBtn.onclick = function(){
         for (let i = 0; i < eq.dots.length; i++) {
-          btns.item(eq.dots[i]).style.backgroundColor = "red";
+          btns.item(eq.dots[i]).style.backgroundColor = "green";
         }
       }
     
   }
 
-for (let i = 0; i < 16; i++) {
+// for (let i = 0; i < 16; i++) {
   
-  const btn = btns.item(i);
-  btn .onclick = async function () {
-    allBtnsToWhite();
-    document.querySelector(".sin").style.visibility = "visible";
-      document.querySelector(".cos").style.visibility = "visible";
-      document.querySelector(".randomEq").style.visibility = "hidden";
-    const textSin = document.querySelector(".sin");
-    textSin.textContent = "\\[\\sin x = "+sinJax[i];
-    const textCos = document.querySelector(".cos");
-    textCos.textContent = "\\[\\cos x = "+cosJax[i];
-    await MathJax.typeset();
-    btns.item(i).style.backgroundColor = "red";
+//   const btn = btns.item(i);
+//   btn .onclick = async function () {
+//     allBtnsToWhite();
+//     document.querySelector(".sin").style.visibility = "visible";
+//       document.querySelector(".cos").style.visibility = "visible";
+//       document.querySelector(".randomEq").style.visibility = "hidden";
+//     const textSin = document.querySelector(".sin");
+//     textSin.textContent = "\\[\\sin x = "+sinJax[i];
+//     const textCos = document.querySelector(".cos");
+//     textCos.textContent = "\\[\\cos x = "+cosJax[i];
+//     await MathJax.typeset();
+//     btns.item(i).style.backgroundColor = "red";
       
-}
-}
+// }
+// }
+
+
+const taskDotBtn = document.querySelector("#taskDot");
+    let k = 0;
+    taskDotBtn .onclick = async function () {
+      allBtnsToWhite();
+      document.querySelector(".randomDot").style.visibility = "visible";
+      document.querySelector(".show").disabled = false;
+      document.querySelector(".check").disabled = false;
+      const text = document.querySelector(".randomDot");
+      let dot = randDot();
+      
+      text.textContent = dot.value;
+      await MathJax.typeset();
+      const progressDot = document.querySelector("#progressDot")
+      
+      for (let i = 0; i < 16; i++) {
+  
+        const btn = btns.item(i);
+        btn .onclick = async function () {
+          allBtnsToWhite();
+          console.log(jaxDots[i],dot.simplifiedValue);
+          if (jaxDots[i] === dot.simplifiedValue) {
+            btn.style.backgroundColor = "green";
+            progressDot.textContent =(++k) +" подряд!";
+            progressDot.style.color = "green";
+            document.querySelector(".show").disabled = "true";
+
+          } else {
+            btn.style.backgroundColor = "red";
+            progressDot.textContent ="0 подряд!";
+            progressDot.style.color = "red";
+            k=0;
+          }
+          
+      }
+      }
+      
+      const showBtn = document.querySelector("#showDot");
+      showBtn.onclick = function(){
+        allBtnsToWhite();
+        btns.item(jaxDots.indexOf(dot.simplifiedValue)).style.backgroundColor = "#788af0";
+      }
+    
+  }
 
 
 function allBtnsToWhite() {

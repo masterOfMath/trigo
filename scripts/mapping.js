@@ -4,6 +4,12 @@ for (let i = 0; i < 12; i++) {
 }
 
 let angles = [0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330];
+let globalDots =[[0,1],[1,6],[1,4],[1,3],[1,2],[2,3],[3,4],[5,6],[1,1],[7,6],[5,4],[4,3],[3,2],[5,3],[7,4],[11,6]];
+let jaxDots = [];
+for (let i = 0; i < angles.length; i++) {
+    jaxDots.push(simplify(globalDots[i][0],globalDots[i][1]));
+}
+
 
 for (let i = 0; i < angles.length; i++) {
     angles[i] = angles[i] * (Math.PI / 180);
@@ -24,28 +30,7 @@ console.log(map);
 let sinMap = new Map();
 
 
-function simplify (value) {
-    let starPos = value.indexOf("*");
-    let m = parseInt(value.slice(0,starPos));
-    let n = parseInt(value.slice(starPos+4,value.length));
-    var M = m, N= n;
-    for (var i = 2; i <= m; i++) {
-		if (m % i === 0 &&  n % i === 0)
-			M = m / i, N = n / i;
-	}
-    while (M/N < -1) {
-        M += 2 * N;
-    }
-    while(M/N > 1) {
-        M -= 2 * N;
-    }
-    if (M === 0) return "0";
-    if (M === 1 && N === 1) return "pi";
-    if (N === 1) return "*pi";
-    if (M === 1) return "pi/" + N;
-    if (M === -1) return "-pi/" + N;
-    return M+"*pi/" + N;
-}
+
 
 function m(s){
     return "-"+s;
@@ -93,4 +78,11 @@ function randEq() {
     index = Math.floor(Math.random() * (eqsList.length-1));
     return eqsList[index];
     }
+function randDot() {
+    let denoms = [1,2,3,4,6];
+    let denom = denoms[Math.floor(Math.random() * 5)];
+    let nom = Math.floor(Math.random() * 30);
+    let dot = new angle(nom,denom);
+    return dot;
+}
 
