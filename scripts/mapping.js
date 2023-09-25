@@ -36,24 +36,36 @@ function m(s){
     return "-"+s;
 }
 const sqrt32 = "\\frac{\\sqrt{3}}{2}\\]";
+const sqrt3 = "\\sqrt{3}\\]";
+const sqrt33 = "\\frac{\\sqrt{3}}{3}\\]";
 const sqrt22 = "\\frac{\\sqrt{2}}{2}\\]";
 const half = "\\frac{1}{2}\\]";
+
 let sinJax = ["0\\]",half,sqrt22,sqrt32,"1\\]",sqrt32,sqrt22,half,"0\\]",
 m(half),m(sqrt22),m(sqrt32),"-1\\]",m(sqrt32),m(sqrt22),m(half)];
 let cosJax = ["1\\]",sqrt32,sqrt22,half,"0\\]",
 m(half),m(sqrt22),m(sqrt32),"-1\\]",m(sqrt32),m(sqrt22),m(half),"0\\]",half,sqrt22,sqrt32];
 
-let eqs = new Array(32).fill("");
+let tgJax = ["0\\]",sqrt33,"1\\]",sqrt3,m(sqrt3),"-1\\]",m(sqrt33)];
+
+let ctgJax = [sqrt3,"1\\]",sqrt33,"0\\]",m(sqrt33),"-1\\]",m(sqrt3)];
+
+let eqs = new Array(47).fill("");
 for (let i = 0; i < 16; i++) {
     eqs[i] = "\\[\\sin x =" + sinJax[i];
     }
 for (let i = 16; i < 32; i++) {
     eqs[i] = "\\[\\cos x =" + cosJax[i-16];
 }
-
+for (let i = 32; i < 39; i++) {
+    eqs[i] = "\\[\\operatorname{tg}{x}  =" + tgJax[i-32];
+}
+for (let i = 39; i < 46; i++) {
+    eqs[i] = "\\[\\operatorname{ctg}{x}  =" + ctgJax[i-39];
+}
 
 let eqsList = Array(0);
-
+//sins
 eqsList.push(new Equation(eqs[0],[0,8]));
 eqsList.push(new Equation(eqs[1],[1,7]));
 eqsList.push(new Equation(eqs[2],[2,6]));
@@ -63,6 +75,7 @@ eqsList.push(new Equation(eqs[9],[9,15]));
 eqsList.push(new Equation(eqs[10],[10,14]));
 eqsList.push(new Equation(eqs[11],[11,13]));
 eqsList.push(new Equation(eqs[12],[12]));
+//coss
 eqsList.push(new Equation(eqs[16],[0]));
 eqsList.push(new Equation(eqs[17],[1,15]));
 eqsList.push(new Equation(eqs[18],[2,14]));
@@ -72,6 +85,23 @@ eqsList.push(new Equation(eqs[21],[5,11]));
 eqsList.push(new Equation(eqs[22],[6,10]));
 eqsList.push(new Equation(eqs[23],[7,9]));
 eqsList.push(new Equation(eqs[24],[8]));
+//tgs
+eqsList.push(new Equation(eqs[32],[0,8]));
+eqsList.push(new Equation(eqs[33],[1,9]));
+eqsList.push(new Equation(eqs[34],[2,10]));
+eqsList.push(new Equation(eqs[35],[3,11]));
+eqsList.push(new Equation(eqs[36],[5,13]));
+eqsList.push(new Equation(eqs[37],[6,14]));
+eqsList.push(new Equation(eqs[38],[7,15]));
+//ctgs
+eqsList.push(new Equation(eqs[39],[1,9]));
+eqsList.push(new Equation(eqs[40],[2,10]));
+eqsList.push(new Equation(eqs[41],[3,11]));
+eqsList.push(new Equation(eqs[42],[4,12]));
+eqsList.push(new Equation(eqs[43],[5,13]));
+eqsList.push(new Equation(eqs[44],[6,14]));
+eqsList.push(new Equation(eqs[45],[7,15]));
+
 
 
 function randEq() {
