@@ -1,6 +1,6 @@
-/* .tasks {
-  width: 300px; 
-} */
+.tasks {
+  max-width: 100%; 
+} 
 .checkShow {
   display: flex;
   column-gap: 10px;
@@ -10,13 +10,23 @@
   height: 30px;
 }
 
+.circleAndTasks {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width:500px) {
+  .circleAndTasks {
+    flex-direction: column;
+  }
+  .trigTable {
+    visibility: collapse;
+  }
+}
+
 
 .main {
   display: flex;
   align-items: start;
-  
-  
-
 }
 
 .trigTable {
@@ -35,9 +45,10 @@
 
 .circle {
     position: relative;
-    width: 400px;
     margin-right: 10px;
-    min-width: 400px;
+    min-width: 350px;
+    align-self: flex-start;
+    /* max-width: 100%; */
   }
   
   
